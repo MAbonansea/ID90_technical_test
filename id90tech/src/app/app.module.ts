@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { AppComponent } from './app.component';
 import { AuthEffect } from '../store/effects/login.effects';
-import {AirlineEffect } from '../store/effects/airline.effects'
+import {AirlineEffect } from '../store/effects/airline.effects';
+import { HotelEffect} from '../store/effects/hotel.effects';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from '../store/reducers/index';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,16 +20,24 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { FlyListComponent } from './fly-list/fly-list.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
+import { HotelsListComponent } from './hotels-list/hotels-list.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    FlyListComponent
+    LoginComponent,
+    HotelsListComponent,
+    
   ],
   imports: [
     BrowserModule,
-    EffectsModule.forRoot([AuthEffect,AirlineEffect]),
+    EffectsModule.forRoot([AuthEffect,AirlineEffect,HotelEffect]),
     StoreModule.forRoot(reducer),
     HttpClientModule,
     BrowserAnimationsModule,
@@ -43,9 +52,10 @@ import { FlyListComponent } from './fly-list/fly-list.component';
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
-    
-
+    MatSnackBarModule,
+    MatGridListModule,
+    AppRoutingModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

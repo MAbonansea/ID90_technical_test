@@ -1,0 +1,27 @@
+<div fxLayoutAlign="center center" fxFlexFill>
+    <mat-card fxFlex="25">
+      <div *ngIf="pending" fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+      </div>
+      <form fxLayoutAlign="stretch" fxLayout="column" *ngIf="!pending">
+        <mat-form-field>
+          <input type="text" name="airlineControl" placeholder="Airline" matInput [(ngModel)]="airlineControl"
+            (ngModelChange)="filter(airlineControl)" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let airline of filteroption" [value]="airline.display_name">
+              {{airline.display_name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Employee Number *</mat-label>
+          <input matInput placeholder="Employee Number" [(ngModel)]="employee_number" name="employee_number">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Password * </mat-label>
+          <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password">
+        </mat-form-field>
+        <button type="submit" mat-flat-button color="primary" (click)="Login()">Login</button>
+      </form>
+    </mat-card>
+  </div>
