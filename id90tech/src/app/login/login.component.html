@@ -3,7 +3,7 @@
   <div class="col-sm-3">
     <div>
       <mat-card>
-        <div *ngIf="pending">
+        <div *ngIf="pending" fxLayoutAlign="center center" fxFlexFill>
           <mat-spinner></mat-spinner>
         </div>
         <form *ngIf="!pending" fxLayoutAlign="stretch" fxLayout="column">

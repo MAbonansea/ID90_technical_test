@@ -18,6 +18,7 @@ export class AuthEffect {
         mergeMap(({ params }) =>
           this.authService.auth(params).pipe(
             map(resp => {
+              localStorage.setItem("is_logged","true");
               this.router.navigate(['/search']);
               return AuthLoginAction.loginSuccesses({ account: resp.account, user: resp.member })
             }),
