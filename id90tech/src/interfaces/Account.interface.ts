@@ -10,7 +10,7 @@ export interface AccountInterface {
     country: string
     deleted: boolean
     departmentName: string
-    employeeNumber: string
+    employeeNumber: string 
     employmentStatus: string
     employmentType: string
     facebook: any

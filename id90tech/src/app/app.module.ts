@@ -33,10 +33,8 @@ import { HotelsListComponent } from './hotels-list/hotels-list.component';
 import { AgmCoreModule } from '@agm/core';
 import {MatTableModule} from '@angular/material/table';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
-
-
-
-
+import {AuthGuard} from '../guard/auth.guard';
+import {LoginGuard} from '../guard/login.guard';
 
 @NgModule({
   declarations: [
@@ -44,7 +42,6 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     LoginComponent,
     SearchHotelsComponent,
     HotelsListComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -77,10 +74,8 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
       
     }),
     AgmSnazzyInfoWindowModule
-    
-    
   ],
-  providers: [MatDatepickerModule,DatePipe],
+  providers: [MatDatepickerModule,DatePipe,AuthGuard,LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

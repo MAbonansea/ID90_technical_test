@@ -8,6 +8,7 @@ import { takeUntil, take } from 'rxjs/operators';
 import * as state from '../../store/reducers';
 import { Subject } from 'rxjs/internal/Subject';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthGuard } from 'src/guard/auth.guard';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit   {
   
   constructor(
     private store: Store,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
