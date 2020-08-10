@@ -3,8 +3,6 @@ import * as User from './user.reducer';
 import * as Airline from './airline.reducer';
 import * as Hotel from './hotel.reducer';
 
-
-
 export interface AppState {
     user: User.State,
     airline:Airline.State,
@@ -14,7 +12,6 @@ export interface AppState {
 export const selectUserState = (state: AppState) => state.user;
 export const airlineDataState = (state: AppState) => state.airline;
 export const hotelDataState = (state: AppState) => state.hotel;
-
 
 export const selectUser = createSelector(selectUserState, state => state.user);
 export const selectUserPending = createSelector(selectUserState, state => state.pending);

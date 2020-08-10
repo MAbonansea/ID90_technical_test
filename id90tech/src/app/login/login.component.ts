@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthParam } from '../../interfaces/Auth.interface';
 import { AirlineInterface } from '../../interfaces/Airline.interface'
 import { Store, select } from '@ngrx/store';
@@ -15,9 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-
- 
+export class LoginComponent implements OnInit   {
 
   title = 'Login';
   airlineOption: AirlineInterface[];
@@ -34,7 +32,6 @@ export class LoginComponent implements OnInit {
   private userError$ = this.store.pipe(select(state.selectUserError));
   private userPending$ = this.store.pipe(select(state.selectUserPending));
   
-
   constructor(
     private store: Store,
     private _snackBar: MatSnackBar
@@ -46,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.fetchAirlines();
     this.fecthPending();
     this.fecthError();
+
   }
 
   public filter(value: any): void {
@@ -55,19 +53,23 @@ export class LoginComponent implements OnInit {
   }
 
   Login() {
+
     const Data : AuthParam = {
       airline: this.airline,
       employee_number: this.employee_number,
       password: this.password,
       remember_me: 1
     }
+
     this.store.dispatch(login({ params: Data }))
   }
 
   fetchAirlines() {
+
     this.airlines$.pipe(takeUntil(this.ngUnsubscribe)).subscribe((airlines) => {
       this.airlineOption = airlines;
       this.filteroption = airlines;
+
     })
   }
   ngOnDestroy() {
@@ -79,10 +81,10 @@ export class LoginComponent implements OnInit {
       if(error){
         this.error = "Invalid login credentials";
         this.openSnackBar();
-        
       }
     })
   }
+
   fecthPending(){
     this.userPending$.pipe(takeUntil(this.ngUnsubscribe)).subscribe((pending) => {
       this.pending = pending;
@@ -90,12 +92,10 @@ export class LoginComponent implements OnInit {
   }
 
   openSnackBar() {
-    
+
     this._snackBar.open(this.error,"", {
       duration: 5 * 1000,
-      
-
     });
   }
-
+  
 }
