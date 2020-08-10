@@ -1,7 +1,10 @@
-<mat-toolbar>
+  <mat-toolbar>
+    <button *ngIf="displayBack" mat-icon-button class="example-icon" aria-label="Go Back" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
     <span>ID90 Tech</span>
     <span class="spacer"></span>
-    <button mat-icon-button class="logout" aria-label="Logout" (click)="logout()">
+    <button mat-icon-button class="example-icon" aria-label="Logout" (click)="logout()">
       <mat-icon>input</mat-icon>
     </button>
   </mat-toolbar>

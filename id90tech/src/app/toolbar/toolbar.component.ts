@@ -15,9 +15,17 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goBack() {
+    this.router.navigate(['/search']);
+  }
+
   logout() {
     localStorage.removeItem('is_logged');
     this.router.navigate(['/']);
+  }
+
+  get displayBack() {
+    return this.router.routerState.snapshot.url !== '/search';
   }
 
 }

@@ -1,10 +1,14 @@
 <app-toolbar></app-toolbar>
+
 <div *ngIf="pending" fxLayoutAlign="center center" fxFlexFill>
     <mat-spinner></mat-spinner>
 </div>
-<div *ngIf="!activeMap && !pending">
-    <div fxLayoutAlign="center center" style="padding-top: 5px; padding-bottom: 5px;">
-        <button mat-raised-button (click)="ViewMap()"> View Map </button>
+<div *ngIf=" !pending && !dataSource">
+    <app-no-content></app-no-content>
+</div>
+<div *ngIf=" !pending && dataSource">
+    <div fxLayout="row">
+        <ng-container *ngTemplateOutlet="map"></ng-container>
     </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="name">
@@ -27,7 +31,7 @@
 
         <ng-container matColumnDef="total">
             <th mat-header-cell *matHeaderCellDef> Total </th>
-            <td mat-cell *matCellDef="let element" [ngStyle]="{'backgroundColor': element.selected}"> {{element.total}}
+            <td mat-cell *matCellDef="let element" [ngStyle]="{'backgroundColor': element.selected}"> {{ element.total | currency }}
             </td>
         </ng-container>
 
@@ -36,37 +40,39 @@
             <td mat-cell *matCellDef="let element" [ngStyle]="{'backgroundColor': element.selected}">
                 {{element.location_description}} </td>
         </ng-container>
+        
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" [ngStyle]="{'backgroundColor': element.selected}">
+                <button mat-mini-fab color="primary" aria-label="Open in map" (click)="openInMap(element)">
+                    <mat-icon>map</mat-icon>
+                  </button>
+                </td>
+        </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </div>
-<div *ngIf="activeMap && !pending" fxLayoutAlign="center center">
-    <mat-card>
-        <div fxLayout="row">
-            <agm-map [latitude]="initMarkert.latitude" [longitude]="initMarkert.longitude">
-                <agm-marker *ngFor="let market of markets" [latitude]="market.latitude" [longitude]="market.longitude"
-                    (markerClick)="getMarkerClick($event)">
-                    <agm-info-window [closeWhenOthersOpen]="true" [closeOnMapClick]="true">
-                        <div>
-                            <img [src]="market.image" alt="" style="max-width: 300px; max-height: 300px;"><br>
-                            <p>
-                                <strong>
-                                    <br>
-                                    Selected Hotel Information: <br>
-                                    Name: {{market.name}}<br>
-                                    City: {{market.city}}<br>
-                                    Star : {{market.star_rating}}<br>
-                                </strong>
-                            </p>
-                        </div>
-                    </agm-info-window>
-                </agm-marker>
-            </agm-map>
-
-        </div>
-        <mat-card-actions>
-            <button mat-button (click)="ViewList()">View List</button>
-        </mat-card-actions>
-
-    </mat-card>
-</div>
+       
+<ng-template #map>
+    <agm-map [latitude]="initMarkert.latitude" [longitude]="initMarkert.longitude" >
+        <agm-marker *ngFor="let market of markets" [latitude]="market.latitude" [longitude]="market.longitude"
+            (markerClick)="getMarkerClick($event, infowindow)">
+            <agm-info-window [isOpen]="isMarkerOpen(market)" [closeWhenOthersOpen]="true" [closeOnMapClick]="true" #infowindow>
+                <div>
+                    <img [src]="market.image" alt="" style="max-width: 300px; max-height: 300px;"><br>
+                    <p>
+                        <strong>
+                            <br>
+                            Selected Hotel Information: <br>
+                            Name: {{market.name}}<br>
+                            City: {{market.city}}<br>
+                            Star : {{market.star_rating}}<br>
+                        </strong>
+                    </p>
+                </div>
+            </agm-info-window>
+        </agm-marker>
+    </agm-map>
+</ng-template>
+   

@@ -17,22 +17,37 @@ import { Subject } from 'rxjs';
   styleUrls: ['./hotels-search.component.css']
 })
 export class SearchHotelsComponent implements OnInit {
-  constructor(private store: Store, public datePipe: DatePipe, private router: Router,  private _snackBar: MatSnackBar) {
-  }
+  constructor(
+    private store: Store,
+    public datePipe: DatePipe,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {}
   
 
-  from: string
-  to: string
-  city: any
-  guests: number
-  public result: any
+  public result: any;
+  from: Date;
+  to: Date;
+  today: Date;
+  city: any;
+  guests: number;
   error : string;
+  pending: boolean;
 
   private ngUnsubscribe = new Subject();
   private hotelError$ = this.store.pipe(select(state.selectHotelError));
+  private hotelPending$ = this.store.pipe(select(state.selectHotelPending));
 
   ngOnInit(): void {
+    this.today = new Date();
     this.fecthError();
+    this.getHotelPending();
+  }
+
+  getHotelPending() {
+    this.hotelPending$.pipe(takeUntil(this.ngUnsubscribe)).subscribe((isPending) => {
+      this.pending = isPending;
+    });
   }
 
   Search() {
@@ -40,8 +55,8 @@ export class SearchHotelsComponent implements OnInit {
 
       const params: HotelParam = {
         destiny: this.city,
-        checkin: this.FormatDate(this.to.toString()),
-        checkout: this.FormatDate(this.from.toString()),
+        checkin: this.FormatDate(this.from.toString()),
+        checkout: this.FormatDate(this.to.toString()),
         capacity: this.guests
       }
       

@@ -6,12 +6,14 @@ import { SearchHotelsComponent } from './hotels-search/hotels-search.component';
 import { HotelsListComponent } from './hotels-list/hotels-list.component';
 import { AuthGuard } from 'src/guard/auth.guard';
 import { LoginGuard } from 'src/guard/login.guard';
+import { NoContentComponent } from './no-content/no-content.component';
 
   const routes: Routes = [
    { path:'', redirectTo:'/login', pathMatch:'full' },
    { path:'login', component: LoginComponent , canActivate:[LoginGuard] },
    { path:'hotels', component: HotelsListComponent , pathMatch:'full' , canActivate:[AuthGuard] },
-   { path:'search', component: SearchHotelsComponent, pathMatch:'full', canActivate:[AuthGuard] }
+   { path:'search', component: SearchHotelsComponent, pathMatch:'full', canActivate:[AuthGuard] },
+   { path: '**', component: NoContentComponent }
   ];
 
 @NgModule({

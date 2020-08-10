@@ -1,7 +1,10 @@
 <app-toolbar></app-toolbar>
 <div fxLayoutAlign="center center" fxFlexFill>
     <mat-card fxFlex=50>
-        <mat-grid-list cols="4" rowHeight="110px" >
+        <div *ngIf="pending" fxLayoutAlign="center center" fxFlexFill>
+            <mat-spinner></mat-spinner>
+        </div>
+        <mat-grid-list *ngIf="!pending" cols="4" rowHeight="110px" >
             <mat-grid-tile colspan="3" rowspan="1">
                 <mat-form-field class="inputcss" fxFlexFill appearance="outline">
                     <mat-label>
@@ -18,7 +21,7 @@
             <mat-grid-tile colspan="1" rowspan="1">
                 <mat-form-field appearance="outline" style="width: 90%">
                     <mat-label>From</mat-label>
-                    <input matInput [matDatepicker]="From" placeholder="From" [(ngModel)]="from">
+                    <input matInput [matDatepicker]="From"  [min]="today" placeholder="From" [(ngModel)]="from">
                     <mat-datepicker-toggle matSuffix [for]="From"></mat-datepicker-toggle>
                     <mat-datepicker #From></mat-datepicker>
                   </mat-form-field>   
@@ -26,7 +29,7 @@
             <mat-grid-tile colspan="1" rowspan="1" >
                 <mat-form-field appearance="outline" style="width: 90%">
                     <mat-label>To</mat-label>
-                    <input matInput [matDatepicker]="To" placeholder="To" [(ngModel)]="to">
+                    <input matInput [matDatepicker]="To" [min]="from" placeholder="To" [(ngModel)]="to">
                     <mat-datepicker-toggle matSuffix [for]="To"></mat-datepicker-toggle>
                     <mat-datepicker #To></mat-datepicker>
                   </mat-form-field>
