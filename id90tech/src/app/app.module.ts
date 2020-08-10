@@ -35,6 +35,7 @@ import {MatTableModule} from '@angular/material/table';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import {AuthGuard} from '../guard/auth.guard';
 import {LoginGuard} from '../guard/login.guard';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {LoginGuard} from '../guard/login.guard';
     LoginComponent,
     SearchHotelsComponent,
     HotelsListComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,

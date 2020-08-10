@@ -79,6 +79,6 @@ export class HotelsListComponent implements OnInit {
     let found = this.dataSource.findIndex(element => element.location.longitude == event.longitude && element.location.latitude == event.latitude);
 
     this.dataSource[found].selected = "lightblue";
-    console.log(this.dataSource[found].selected)
+    
   }
 }
