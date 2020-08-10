@@ -36,6 +36,8 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import {AuthGuard} from '../guard/auth.guard';
 import {LoginGuard} from '../guard/login.guard';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { NoContentComponent } from './no-content/no-content.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     SearchHotelsComponent,
     HotelsListComponent,
     ToolbarComponent,
+    NoContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
       apiKey: 'AIzaSyCAFGbbOZHrav7CPHSbBgS9Zo9P1QUzq_s'
       
     }),
-    AgmSnazzyInfoWindowModule
+    AgmSnazzyInfoWindowModule,
+    StarRatingModule
   ],
   providers: [MatDatepickerModule,DatePipe,AuthGuard,LoginGuard],
   bootstrap: [AppComponent]
