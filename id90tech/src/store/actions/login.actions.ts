@@ -7,10 +7,12 @@ export const login = createAction(
   '[Login Page] Login',
   props<{ params: AuthParam }>()
 );
+
 export const loginFail = createAction(
     '[Login Page] Fail',
     props<{ error:any }>()
 ); 
+
 export const loginSuccesses = createAction(
     '[Login Page] Successes',
     props<{user:UserInterface,account:AccountInterface}>()

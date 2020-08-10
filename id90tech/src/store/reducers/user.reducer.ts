@@ -14,7 +14,6 @@ export const initialState: State = {
     user: null
 };
 
-
 const userReducer = createReducer(
     initialState,
     on(LoginActions.login, state => ({ ...state, pending: true })),

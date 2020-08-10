@@ -15,12 +15,11 @@ export const initialState: State = {
    hotelData : null
 };
 
-
 const userReducer = createReducer(
     initialState,
     on(HotelActions.hotelLoad, state => ({ ...state, pending: true })),
     on(HotelActions.hotelLoadFail, (state, { error }) => ({ ...state, pending:false, error })),
-    on(HotelActions.hotelLoadSuccesses, (state, { hotelData })  => ({ ...state, pending:false, hotelData:hotelData }))
+    on(HotelActions.hotelLoadSuccesses, (state, { hotelData })  => ({ ...state, pending:false, hotelData:hotelData , }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

@@ -23,8 +23,18 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { SearchHotelsComponent } from './hotels-search/hotels-search.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
 import { HotelsListComponent } from './hotels-list/hotels-list.component';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { AgmCoreModule } from '@agm/core';
+import {MatTableModule} from '@angular/material/table';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+
+
 
 
 
@@ -32,6 +42,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
   declarations: [
     AppComponent,
     LoginComponent,
+    SearchHotelsComponent,
     HotelsListComponent,
     
   ],
@@ -55,9 +66,21 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     MatSnackBarModule,
     MatGridListModule,
     AppRoutingModule,
-    AngularFontAwesomeModule
+    FontAwesomeModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCAFGbbOZHrav7CPHSbBgS9Zo9P1QUzq_s'
+      
+    }),
+    AgmSnazzyInfoWindowModule
+    
+    
   ],
-  providers: [],
+  providers: [MatDatepickerModule,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

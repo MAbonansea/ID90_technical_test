@@ -1,0 +1,43 @@
+<div fxLayoutAlign="center center" fxFlexFill>
+    <mat-card fxFlex=50>
+        <mat-grid-list cols="4" rowHeight="110px" >
+            <mat-grid-tile colspan="3" rowspan="1">
+                <mat-form-field class="inputcss" fxFlexFill appearance="outline">
+                    <mat-label>
+                        City
+                    </mat-label>
+                    <input matInput placeholder="City" [(ngModel)]="city">
+                </mat-form-field >
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="2">
+                <button (click)="Search()" type="submit"  mat-stroked-button color="primary" class="inputcss"  >
+                    Search <mat-icon>search</mat-icon>
+                </button>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1">
+                <mat-form-field appearance="outline" style="width: 90%">
+                    <mat-label>From</mat-label>
+                    <input matInput [matDatepicker]="From" placeholder="From" [(ngModel)]="from">
+                    <mat-datepicker-toggle matSuffix [for]="From"></mat-datepicker-toggle>
+                    <mat-datepicker #From></mat-datepicker>
+                  </mat-form-field>   
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1" >
+                <mat-form-field appearance="outline" style="width: 90%">
+                    <mat-label>To</mat-label>
+                    <input matInput [matDatepicker]="To" placeholder="To" [(ngModel)]="to">
+                    <mat-datepicker-toggle matSuffix [for]="To"></mat-datepicker-toggle>
+                    <mat-datepicker #To></mat-datepicker>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1">
+                <mat-form-field class="inputcss" appearance="outline" >
+                    <mat-label>
+                        Number of Guests
+                    </mat-label>
+                    <input matInput placeholder="Number of Guests" [(ngModel)]="guests" >
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card>
+</div>
